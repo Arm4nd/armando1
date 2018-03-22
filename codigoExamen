@@ -1,0 +1,83 @@
+/*Escribir un programa que pida un número que represente segundos,  
+inferior a un millón y calcule su equivalente desglosándolo en días, horas, minutos y segundos. Ejemplo
+43300 segundos equivale a 0 días 12 horas 1 minuto 40 segundos*/
+
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
+//BOX agrega los elemento de manera vertical o orizontal segun se ordene
+public class EXAMEN {
+ 	public EXAMEN() 
+ 	{
+	 JFrame frame=new JFrame("EXAMEN");
+	 JPanel contenedor=new JPanel();
+         JPanel contenedor2=new JPanel();
+         JPanel contenedor3=new JPanel();
+        
+	 contenedor.setLayout(new BoxLayout(contenedor,BoxLayout.Y_AXIS));
+         contenedor2.setLayout(new GridLayout(2,2));
+         TitledBorder borde2 = BorderFactory.createTitledBorder("ENTRADAS");
+                contenedor2.setBorder(borde2);
+		
+                JLabel datos=new JLabel("INTRODUZCA SUS SEGUNDOS:");
+                JTextField DATOS=new JTextField();
+                DATOS.setBounds(10,20,200,30);
+                JButton convertir=new JButton("CONVERTIR");
+                contenedor2.add(datos);
+                contenedor2.add(DATOS);
+                contenedor2.add(convertir);
+                
+                
+        contenedor3.setLayout(new GridLayout(4,2));
+         TitledBorder borde3 = BorderFactory.createTitledBorder("SALIDAS");
+                contenedor3.setBorder(borde3);
+                
+                JLabel dias=new JLabel("DÍAS:");
+                JTextField DIAS=new JTextField();
+                JLabel horas=new JLabel("HORAS:");
+                JTextField HORAS=new JTextField();
+                JLabel minutos=new JLabel("MINUTOS:");
+                JTextField MINUTOS=new JTextField();
+                JLabel segundos=new JLabel("SEGUNDOS:");
+                JTextField SEGUNDOS=new JTextField();
+                contenedor3.add(dias);
+                contenedor3.add(DIAS);
+                contenedor3.add(horas);
+                contenedor3.add(HORAS);
+                contenedor3.add(minutos);
+                contenedor3.add(MINUTOS);
+                contenedor3.add(segundos);
+                contenedor3.add(SEGUNDOS);
+         contenedor.add(contenedor2);               
+         contenedor.add(contenedor3);   
+         
+         convertir.addActionListener(new ActionListener(){
+             
+             public void actionPerformed(ActionEvent e) {
+                  String datoss=DATOS.getText();
+                 int numEntero = Integer.parseInt(datoss);
+                 if(numEntero<=1000000){
+                     int diass=numEntero/86400;
+                     int horass=(numEntero-(diass*86400)/3600);
+                     int minutoss=(numEntero-(diass*86400)-(horass*3600)/60);
+                     int segundoss=numEntero-(diass*86400)-(horass*3600)-(minutoss*60);
+                                        
+                 }else JOptionPane.showMessageDialog(null,"su número deve ser menor a 1,000,000","ATENCIÓN",JOptionPane.WARNING_MESSAGE);
+                 
+                 
+                    }
+             
+         }
+                
+		frame.add(contenedor);
+		frame.setSize(800,800);
+		frame.setVisible(true);
+ 	}
+
+	public static void main(String[] args) {
+		examen L=new examen();
+	}
+}
